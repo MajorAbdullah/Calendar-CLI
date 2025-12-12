@@ -1,55 +1,67 @@
-# Smart Calendar Assistant
+# Smart Calendar Assistant 📅
 
-A powerful calendar management tool with both CLI and Web UI interfaces for managing Google Calendar with AI assistance powered by Google Gemini.
+A powerful calendar management tool with both **CLI** and **Web UI** interfaces for managing Google Calendar with AI assistance powered by Google Gemini.
 
-## Features
+![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)
+![Streamlit](https://img.shields.io/badge/Streamlit-1.28+-red.svg)
+![License](https://img.shields.io/badge/License-MIT-green.svg)
 
+## ✨ Features
+
+### Core Features
 - 📅 View your calendar schedule (today, tomorrow, this week, etc.)
 - ➕ Schedule new events with natural language
 - 🔍 Find free time in your schedule
 - ⚠️ Automatic conflict detection
 - 🤖 AI-powered intelligent scheduling suggestions
-- 🌍 **Multi-Timezone Meeting Scheduler** - Schedule meetings with friends across different timezones
-- 👥 Send calendar invites to multiple participants
-- 🌐 **Web UI** - Beautiful Streamlit interface for easy meeting creation
 
-## Prerequisites
+### Multi-Timezone Support
+- 🌍 **100+ Cities Supported** - Just select a city, timezone auto-detected
+- 🔢 **UTC Offset Selection** - Choose by UTC+5, UTC-8, etc.
+- ⏰ **Automatic Time Conversion** - Set YOUR time, friends see THEIR local time
+- 📧 **Smart Invitations** - Calendar invites sent with correct local times
 
-1. Python 3.8 or higher
-2. Pipedream account with Google Calendar connected
-3. Google API key for Gemini
-4. Required environment variables
+### Web UI Features
+- 💬 **AI Chatbot** - Schedule meetings using natural language
+- 📝 **Visual Meeting Creator** - Easy form-based meeting setup
+- 🌍 **World Time Converter** - See current time across the globe
+- 👥 **Multi-Attendee Support** - Add up to 10 friends with different timezones
 
-## Installation
+## 🚀 Quick Start
 
-1. Clone or navigate to this directory:
+See [RUN.md](RUN.md) for detailed instructions.
+
 ```bash
-cd /Users/abdullah/my_projects/Calendar-CLI
-```
+# Clone the repository
+git clone https://github.com/MajorAbdullah/Calendar-CLI.git
+cd Calendar-CLI
 
-2. Create a virtual environment (recommended):
-```bash
-python3 -m venv venv
-source venv/bin/activate
-```
-
-3. Install dependencies:
-```bash
+# Install dependencies
 pip install -r requirements.txt
-```
 
-4. Set up environment variables:
-   - Copy `.env.example` to `.env`
-   - Fill in your credentials:
-```bash
+# Set up environment variables
 cp .env.example .env
+# Edit .env with your credentials
+
+# Run Web UI
+streamlit run streamlit_app.py
+
+# Or run CLI
+python3 calendar_assistant.py
 ```
 
-## Configuration
+## 📋 Prerequisites
 
-Edit your `.env` file with your credentials:
+1. **Python 3.8+**
+2. **Pipedream Account** - For Google Calendar API access
+3. **Google API Key** - For Gemini AI
+4. **Google Calendar** - Connected via Pipedream
 
-```
+## 🔧 Configuration
+
+Create a `.env` file with your credentials:
+
+```env
 PIPEDREAM_PROJECT_ID=your_project_id
 PIPEDREAM_ENVIRONMENT=production
 PIPEDREAM_CLIENT_ID=your_client_id
@@ -58,98 +70,81 @@ EXTERNAL_USER_ID=your_user_id
 GOOGLE_API_KEY=your_gemini_api_key
 ```
 
-## Usage
+## 📱 Usage
 
-### Option 1: Web UI (Recommended for Meeting Creation)
+### Web UI (Recommended)
 
-Run the Streamlit web interface:
 ```bash
 streamlit run streamlit_app.py
 ```
 
-This will open a web browser with an intuitive interface where you can:
-- Create meetings with multiple attendees
-- Specify different timezones for each participant
-- See real-time timezone conversions
-- Send calendar invites automatically
-- Use the Quick Meeting feature for faster setup
+Opens at `http://localhost:8501` with:
 
-**Web UI Features:**
-- **Create Meeting Tab**: Detailed meeting setup with individual timezone selection
-- **Quick Meeting Tab**: Fast bulk entry format (email, timezone per line)
-- Live timezone preview showing meeting time for each attendee
-- Automatic calendar invite generation and email delivery
+| Tab | Description |
+|-----|-------------|
+| 💬 AI Chatbot | Natural language calendar commands |
+| 📝 Schedule Meeting | Visual meeting creator with timezone support |
+| 🌍 Time Converter | World clock and time conversion |
+| ⚙️ Settings | Timezone reference guide |
 
-### Option 2: CLI (For AI-Powered Scheduling)
+### CLI Mode
 
-Run the calendar assistant:
 ```bash
 python3 calendar_assistant.py
-## Project Structure
+```
+
+Example commands:
+- "What's on my calendar today?"
+- "Schedule a meeting tomorrow at 2 PM"
+- "Do I have any free time on Friday?"
+
+## 🌍 Timezone Examples
+
+**When it's 12:00 PM in Spain (Madrid):**
+- 🇬🇧 UK (London): 11:00 AM
+- 🇵🇰 Pakistan (Karachi): 4:00 PM
+- 🇮🇳 India (Mumbai): 4:30 PM
+- 🇺🇸 New York: 6:00 AM
+
+**Supported Cities Include:**
+- 🇵🇰 Karachi, Lahore, Islamabad
+- 🇬🇧 London, Manchester, Edinburgh
+- 🇪🇸 Madrid, Barcelona, Valencia
+- 🇮🇳 Mumbai, Delhi, Bangalore
+- 🇦🇪 Dubai, Abu Dhabi
+- 🇺🇸 New York, Los Angeles, Chicago
+- 🇯🇵 Tokyo, Osaka
+- 🇦🇺 Sydney, Melbourne
+- And 80+ more cities!
+
+## 📁 Project Structure
 
 ```
 Calendar-CLI/
-├── calendar_assistant.py   # CLI application
-├── streamlit_app.py        # Web UI for meeting creation
-├── requirements.txt        # Python dependencies
-├── .env                    # Your configuration (not in git)
-├── .env.example           # Example configuration template
-└── README.md              # This file
+├── streamlit_app.py        # 🌐 Web UI application
+├── calendar_assistant.py   # 💻 CLI application
+├── requirements.txt        # 📦 Python dependencies
+├── .env.example           # 🔧 Environment template
+├── README.md              # 📖 This file
+└── RUN.md                 # 🚀 Running instructions
 ```
 
-## Multi-Timezone Meeting Example
+## 🛠️ Tech Stack
 
-Using the Web UI, you can easily schedule a meeting with friends across the globe:
+- **Frontend**: Streamlit
+- **AI**: Google Gemini 2.5 Flash
+- **Calendar API**: Google Calendar via Pipedream MCP
+- **Timezone**: pytz
+- **Backend**: Python 3.8+
 
-**Scenario:** You're in Karachi and want to meet with:
-- Friend in New York (US/Eastern)
-- Friend in London (Europe/London)
-- Friend in Tokyo (Asia/Tokyo)
+## 📝 License
 
-**Steps:**
-1. Open the Streamlit UI: `streamlit run streamlit_app.py`
-2. Enter meeting title: "Global Team Sync"
-3. Select your timezone: Asia/Karachi
-4. Pick date and time in YOUR timezone
-5. Add each friend with their email and timezone
-6. Click "Create Meeting" - everyone gets an invite in their local time! 🎉
+MIT License - feel free to use and modify!
 
-**Quick Meeting Format:**
-```
-john@example.com, US/Eastern
-maria@example.com, Europe/London
-akira@example.com, Asia/Tokyo
-```xit:** Type `quit`, `exit`, or press `Ctrl+C`
+## 👨‍💻 Author
 
-## How It Works
+**Abdullah** - [@MajorAbdullah](https://github.com/MajorAbdullah)
 
-1. **Authentication**: Connects to Pipedream for Google Calendar access
-2. **AI Integration**: Uses Google Gemini for natural language processing
-3. **MCP Protocol**: Leverages Model Context Protocol for tool calling
-4. **Conflict Detection**: Automatically checks for scheduling conflicts
-5. **Smart Scheduling**: Suggests optimal times based on your schedule
+---
 
-## Project Structure
-
-```
-Calendar-CLI/
-├── calendar_assistant.py   # Main application
-├── requirements.txt        # Python dependencies
-├── .env                    # Your configuration (not in git)
-├── .env.example           # Example configuration template
-└── README.md              # This file
-```
-
-## Configuration
-
-The calendar ID is automatically detected from your primary Google Calendar. The default timezone is set to Asia/Karachi (UTC+5). You can modify these in the code if needed.
-
-## Error Handling
-
-- Automatic retry logic for API overload
-- Clear error messages for user guidance
-- Graceful handling of network issues
-
-## License
-
-This is a standalone CLI tool for personal calendar management.
+⭐ Star this repo if you find it useful!
