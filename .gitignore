@@ -3,6 +3,9 @@
 venv/
 .venv/
 
+# Streamlit secrets (never commit!)
+.streamlit/secrets.toml
+
 # Python
 __pycache__/
 *.py[cod]

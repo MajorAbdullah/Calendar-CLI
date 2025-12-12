@@ -16,6 +16,16 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+# Helper function to get config from secrets or env
+def get_config(key):
+    """Get configuration from Streamlit secrets or environment variables"""
+    try:
+        # First try Streamlit secrets (for cloud deployment)
+        return st.secrets[key]
+    except:
+        # Fall back to environment variables (for local development)
+        return os.getenv(key)
+
 # Page configuration
 st.set_page_config(
     page_title="Smart Calendar Assistant",
@@ -323,14 +333,14 @@ class CalendarUI:
             
         try:
             self.pd_client = Pipedream(
-                project_id=os.getenv('PIPEDREAM_PROJECT_ID'),
-                project_environment=os.getenv('PIPEDREAM_ENVIRONMENT'),
-                client_id=os.getenv('PIPEDREAM_CLIENT_ID'),
-                client_secret=os.getenv('PIPEDREAM_CLIENT_SECRET'),
+                project_id=get_config('PIPEDREAM_PROJECT_ID'),
+                project_environment=get_config('PIPEDREAM_ENVIRONMENT'),
+                client_id=get_config('PIPEDREAM_CLIENT_ID'),
+                client_secret=get_config('PIPEDREAM_CLIENT_SECRET'),
             )
             
             self.access_token = self.pd_client.raw_access_token
-            self.gemini_client = genai.Client(api_key=os.getenv('GOOGLE_API_KEY'))
+            self.gemini_client = genai.Client(api_key=get_config('GOOGLE_API_KEY'))
             
             self.mcp_client = Client({
                 "mcpServers": {
@@ -339,9 +349,9 @@ class CalendarUI:
                         "url": "https://remote.mcp.pipedream.net",
                         "headers": {
                             "Authorization": f"Bearer {self.access_token}",
-                            "x-pd-project-id": os.getenv('PIPEDREAM_PROJECT_ID'),
-                            "x-pd-environment": os.getenv('PIPEDREAM_ENVIRONMENT'),
-                            "x-pd-external-user-id": os.getenv('EXTERNAL_USER_ID'),
+                            "x-pd-project-id": get_config('PIPEDREAM_PROJECT_ID'),
+                            "x-pd-environment": get_config('PIPEDREAM_ENVIRONMENT'),
+                            "x-pd-external-user-id": get_config('EXTERNAL_USER_ID'),
                             "x-pd-app-slug": "google_calendar",
                         },
                     }
@@ -392,9 +402,9 @@ class CalendarUI:
                         "url": "https://remote.mcp.pipedream.net",
                         "headers": {
                             "Authorization": f"Bearer {st.session_state.access_token}",
-                            "x-pd-project-id": os.getenv('PIPEDREAM_PROJECT_ID'),
-                            "x-pd-environment": os.getenv('PIPEDREAM_ENVIRONMENT'),
-                            "x-pd-external-user-id": os.getenv('EXTERNAL_USER_ID'),
+                            "x-pd-project-id": get_config('PIPEDREAM_PROJECT_ID'),
+                            "x-pd-environment": get_config('PIPEDREAM_ENVIRONMENT'),
+                            "x-pd-external-user-id": get_config('EXTERNAL_USER_ID'),
                             "x-pd-app-slug": "google_calendar",
                         },
                     }
