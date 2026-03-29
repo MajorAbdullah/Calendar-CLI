@@ -68,7 +68,7 @@ class SmartCalendarAssistant:
                 {'instruction': 'Get my primary calendar ID'}
             )
             # Extract calendar ID from response
-            self.calendar_id = "pinkpantherking20@gmail.com"
+            self.calendar_id = os.getenv('CALENDAR_EMAIL')
             print(f"✅ Primary calendar: {self.calendar_id}\n")
     
     async def create_chat_session(self):
@@ -99,12 +99,12 @@ CRITICAL TOOL USAGE PROTOCOL
 You MUST ALWAYS use this EXACT instruction format with specific calendar ID:
 
 TEMPLATE:
-"List all events for [SPECIFIC TIMEFRAME] from ONLY my primary calendar (pinkpantherking20@gmail.com)"
+"List all events for [SPECIFIC TIMEFRAME] from ONLY my primary calendar ({self.calendar_id})"
 
 ✅ CORRECT EXAMPLES:
-• "List all events for today from ONLY my primary calendar (pinkpantherking20@gmail.com)"
-• "List all events for tomorrow from ONLY my primary calendar (pinkpantherking20@gmail.com)"
-• "List all events for this week from ONLY my primary calendar (pinkpantherking20@gmail.com)"
+• "List all events for today from ONLY my primary calendar ({self.calendar_id})"
+• "List all events for tomorrow from ONLY my primary calendar ({self.calendar_id})"
+• "List all events for this week from ONLY my primary calendar ({self.calendar_id})"
 
 ❌ NEVER USE THESE:
 • "List all events from ALL calendars"

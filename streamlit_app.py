@@ -358,7 +358,7 @@ class CalendarUI:
                 }
             })
             
-            self.calendar_id = "pinkpantherking20@gmail.com"
+            self.calendar_id = os.getenv('CALENDAR_EMAIL')
             st.session_state.initialized = True
             st.session_state.mcp_client = self.mcp_client
             st.session_state.calendar_id = self.calendar_id
